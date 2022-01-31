@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
 import User from './User';
 import NoteType from './NoteType';
+import File from './File';
 
 export default class Note extends BaseModel {
   @column({ isPrimary: true })
@@ -12,9 +13,6 @@ export default class Note extends BaseModel {
 
   @column()
   public message: string
-
-  @column()
-  public file_id: string
 
   @column()
   public note_type_id: number
@@ -35,6 +33,6 @@ export default class Note extends BaseModel {
   @belongsTo(() => NoteType)
   public note_type: BelongsTo<typeof NoteType>
 
-  @hasMany(() => Note, { foreignKey: 'note_id' })
-  public files: HasMany<typeof Note>
+  @hasMany(() => File, { foreignKey: 'note_id' })
+  public files: HasMany<typeof File>
 }
