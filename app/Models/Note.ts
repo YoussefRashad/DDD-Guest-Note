@@ -8,19 +8,19 @@ export default class Note extends BaseModel {
   public id: number
 
   @column()
-  title: string
+  public title: string
 
   @column()
-  message: string
+  public message: string
 
   @column()
-  note_type_id: number
+  public note_type_id: number
 
   @column()
-  user_id: number
+  public user_id: number
 
   @column()
-  files: string[]
+  public files: string[]
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
