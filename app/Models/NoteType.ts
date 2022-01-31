@@ -7,10 +7,10 @@ export default class NoteType extends BaseModel {
   public id: number
 
   @column()
-  name: string
+  public name: string
 
   @column()
-  disabled: boolean
+  public disabled: boolean
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

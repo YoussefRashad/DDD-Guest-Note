@@ -7,10 +7,10 @@ export default class User extends BaseModel {
   public id: number
 
   @column()
-  name: string
+  public name: string
   
   @column()
-  profile_picture: string
+  public profile_picture: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
