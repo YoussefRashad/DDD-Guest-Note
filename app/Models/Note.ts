@@ -12,10 +12,10 @@ export default class Note extends BaseModel {
   message: string
 
   @column()
-  note_type_id: string
+  note_type_id: number
 
   @column()
-  files: string
+  files: string[]
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
