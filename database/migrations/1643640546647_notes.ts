@@ -8,8 +8,8 @@ export default class Notes extends BaseSchema {
       table.increments('id').primary()
       table.string('title').notNullable()
       table.string('message').notNullable()
-      table.integer('note_type_id').unsigned()
-      table.integer('user_id').unsigned()
+      table.integer('note_type_id').unsigned().notNullable()
+      table.integer('user_id').unsigned().notNullable()
 
       table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
       table.foreign('note_type_id').references('id').inTable('note_types').onDelete('CASCADE')

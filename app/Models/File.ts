@@ -7,7 +7,7 @@ export default class File extends BaseModel {
   public id: number
 
   @column()
-  public media_url: string
+  public media_file: string
 
   @column()
   public note_id: number

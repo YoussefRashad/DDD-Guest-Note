@@ -6,8 +6,8 @@ export default class Files extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
-      table.string('media_url').notNullable()
-      table.integer('note_id').unsigned()
+      table.string('media_file').notNullable()
+      table.integer('note_id').unsigned().notNullable()
 
       table.foreign('note_id').references('id').inTable('notes').onDelete('CASCADE')
 
