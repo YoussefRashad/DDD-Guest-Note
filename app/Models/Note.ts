@@ -30,7 +30,7 @@ export default class Note extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
-  @belongsTo(() => NoteType)
+  @belongsTo(() => NoteType, { localKey: 'id', foreignKey: 'note_type_id' })
   public note_type: BelongsTo<typeof NoteType>
 
   @hasMany(() => File, { foreignKey: 'note_id' })

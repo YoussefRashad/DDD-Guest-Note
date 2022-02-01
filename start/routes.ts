@@ -22,4 +22,5 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
   Route.post('send', 'NotesController.sendNote')
+  Route.post('fetch', 'NotesController.fetchNotes')
 }).prefix('/api/note')
