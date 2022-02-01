@@ -17,4 +17,9 @@ export default class NoteService {
   public async fetchNotes({ user_id, per_page, page, filter }: { user_id: number, per_page: number, page: number, filter: any }) {
     return this.noteRepository.fetchNotes({ user_id, per_page, page, filter })
   }
+
+  public deleteNote(note_ids: number[]) {
+    return this.noteRepository.deleteNote(note_ids)
+    
+  }
 }

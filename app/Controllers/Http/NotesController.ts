@@ -3,6 +3,7 @@ import Http from "App/Utils/Http";
 import SendNoteValidator from "App/Validators/SendNoteValidator";
 import NotesService from "App/Services/NoteService";
 import FetchValidator from "App/Validators/FetchValidator";
+import DeleteNotesValidator from "App/Validators/DeleteNotesValidator";
 
 export default class NotesController {
   noteService = new NotesService();
@@ -29,5 +30,11 @@ export default class NotesController {
       notes.toJSON().data,
       notes.toJSON().meta
     );
+  }
+
+  public async deleteNote({ request, response }: HttpContextContract) {
+    const { note_ids } = await request.validate(DeleteNotesValidator)
+    const notes = await this.noteService.deleteNote(note_ids)
+    return Http.respond(response, 'soft delete', notes)
   }
 }

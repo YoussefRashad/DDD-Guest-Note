@@ -26,4 +26,12 @@ export default class NoteRepository {
     const notes = await notesQuery.preload('note_type').preload('files').paginate(page, per_page)
     return notes
   }
+
+  public async deleteNote(note_ids: number[]) {
+    const notes = await Note.findMany(note_ids)
+    await Promise.all(
+      notes.map(note => note.delete())
+    )
+    return notes
+  }
 }
