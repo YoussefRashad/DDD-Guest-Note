@@ -10,6 +10,7 @@ export default class Notes extends BaseSchema {
       table.string('message').notNullable()
       table.integer('note_type_id').unsigned().notNullable()
       table.integer('user_id').unsigned().notNullable()
+      table.timestamp('deleted_at', { useTz: true }).nullable()
 
       table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
       table.foreign('note_type_id').references('id').inTable('note_types').onDelete('CASCADE')

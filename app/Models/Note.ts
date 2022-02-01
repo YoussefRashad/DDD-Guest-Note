@@ -1,10 +1,12 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
+import { compose } from '@ioc:Adonis/Core/Helpers'
+import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
 import User from './User';
 import NoteType from './NoteType';
 import File from './File';
 
-export default class Note extends BaseModel {
+export default class Note extends compose(BaseModel, SoftDeletes) {
   @column({ isPrimary: true })
   public id: number
 
