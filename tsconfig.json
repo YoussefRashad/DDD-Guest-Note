@@ -29,7 +29,8 @@
       "@adonisjs/core",
       "@adonisjs/repl",
       "@adonisjs/lucid",
-      "adonis-lucid-soft-deletes"
+      "adonis-lucid-soft-deletes",
+      "adonis5-scheduler"
     ]
   }
 }

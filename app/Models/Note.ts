@@ -29,7 +29,7 @@ export default class Note extends compose(BaseModel, SoftDeletes) {
   public updatedAt: DateTime
 
   // relationships
-  @belongsTo(() => User)
+  @belongsTo(() => User, { localKey: 'id', foreignKey: 'user_id' })
   public user: BelongsTo<typeof User>
 
   @belongsTo(() => NoteType, { localKey: 'id', foreignKey: 'note_type_id' })
