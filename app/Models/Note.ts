@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
+import { BaseModel, BelongsTo, belongsTo, column, computed, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
 import User from './User';
@@ -37,4 +37,9 @@ export default class Note extends compose(BaseModel, SoftDeletes) {
 
   @hasMany(() => File, { foreignKey: 'note_id' })
   public files: HasMany<typeof File>
+
+  @computed()
+  public get pivot() {
+    return this.$extras
+  }
 }

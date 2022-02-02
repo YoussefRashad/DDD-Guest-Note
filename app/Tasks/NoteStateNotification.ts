@@ -15,15 +15,27 @@ export default class NoteStateNotification extends BaseTask {
   }
 
   public async handle() {
-    const notes = await Note.query()
-      .from("notes")
-      .where(
-        Database.rawQuery(
-          `created_at BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW()`
+    const users = (await Note.query().select("user_id").distinct()).map(
+      (user) => user.user_id
+    );
+    users.map(async (user_id) => {
+      const notes = await Note.query()
+        .from("notes")
+        .select(Database.rawQuery(`note_type_id, note_types.name, count(*)`))
+        .where(
+          Database.rawQuery(
+            `notes.created_at BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW()`
+          )
         )
-    ).preload('note_type')
+        .andWhere("user_id", user_id)
+        .join("note_types", "note_types.id", "notes.note_type_id")
+        .groupBy("note_type_id", "note_types.name");
 
-    const users = [... new Set(notes.map((note) => note.user_id))]
-    console.log({users});
+      notes.map((note) => {
+        console.log(
+          `user ${user_id} got a new ${note.$extras.count} ${note.$extras.name}.`
+        );
+      });
+    });
   }
 }
