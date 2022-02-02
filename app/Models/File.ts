@@ -19,6 +19,6 @@ export default class File extends BaseModel {
   public updatedAt: DateTime
 
   // relationships
-  @belongsTo(() => Note)
+  @belongsTo(() => Note, { localKey: 'id', foreignKey: 'note_id' })
   public note: BelongsTo<typeof Note>
 }
